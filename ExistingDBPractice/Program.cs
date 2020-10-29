@@ -9,25 +9,30 @@ namespace ExistingDBPractice
         static void Main(string[] args)
         {
             string input;
-            Console.Write("Please Enter First Name to lookup in DB:");
-            input = Console.ReadLine().Trim();
-
-            using(PersonContext context = new PersonContext())
+            do
             {
+                 
+                Console.Write("Please Enter First Name to lookup in DB:");
+                input = Console.ReadLine().Trim();
 
-                try
+                using(PersonContext context = new PersonContext())
                 {
-                    Person person = context.Person.Where(x => x.FirstName.ToLower() == input.ToLower()).Single();
 
-                    Console.WriteLine($"-{person.FirstName} {person.LastName}");
-                }
+                    try
+                    {
+                        Person person = context.Person.Where(x => x.FirstName.ToLower() == input.ToLower()).Single();
 
-                catch
-                {
-                    Console.WriteLine("ERROR: Name not found.");
+                        Console.WriteLine($"-{person.FirstName} {person.LastName}");
+                    }
+
+                    catch
+                    {
+                        Console.WriteLine("ERROR: Name not found.");
+                        //input = "";
+                    }
+
                 }
-                
-            }
+            } while (input != "quit");
         }
     }
 }
