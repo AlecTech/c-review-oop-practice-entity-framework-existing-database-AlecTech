@@ -14,11 +14,19 @@ namespace ExistingDBPractice
 
             using(PersonContext context = new PersonContext())
             {
-                Person person = context.Person.Where(x => x.FirstName.ToLower() == input.ToLower()).Single();
 
-                //List<Vehicle> vehicles = context.Vehicles.Where(x => x.ManufacturerId == manufacturer.Id).ToList();
+                try
+                {
+                    Person person = context.Person.Where(x => x.FirstName.ToLower() == input.ToLower()).Single();
 
-                Console.WriteLine($"-{person.FirstName} {person.LastName}");
+                    Console.WriteLine($"-{person.FirstName} {person.LastName}");
+                }
+
+                catch
+                {
+                    Console.WriteLine("ERROR: Name not found.");
+                }
+                
             }
         }
     }
