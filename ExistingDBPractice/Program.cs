@@ -13,7 +13,7 @@ namespace ExistingDBPractice
             do
             {
                  
-                Console.Write("Please Enter First Name to lookup in DB:");
+                Console.Write("Please Enter First Name to lookup in DB or quit to exit:");
                 input = Console.ReadLine().Trim().ToLower();
 
                 using(PersonContext context = new PersonContext())
